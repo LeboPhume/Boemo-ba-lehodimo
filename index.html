@@ -10,42 +10,57 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="src/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <title>Boemo ba lehodimo</title>
   </head>
   <body>
     <div class="weather-app">
       <header>
-        <form>
-          <input type="search" placeholder="Enter a city..." required />
-          <input type="submit" value="search" />
+        <form id="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            required
+            class="search-input"
+            id="search-input"
+          />
+          <input type="submit" value="Search" class="search-button" />
         </form>
       </header>
       <main>
-        <div>
-          <h1>Paris</h1>
-          <p>
-            Monday 22:29, broken clouds
-            <br />
-            Humidity: 68%, Wind: 3.6km/h
-          </p>
+        <div class="current-weather">
+          <div>
+            <h1 class="current-city" id="current-city">Paris</h1>
+            <p class="current-details">
+              <span id="current-date"></span>, moderate rain <br />
+              Humidity: <strong>87%</strong>, Wind: <strong>7.2km/h</strong>
+            </p>
+          </div>
+          <div class="current-temperature">
+            <span class="current-temperature-icon">☀️</span
+            ><span class="current-temperature-value">24</span
+            ><span class="current-temperature-unit">°C</span>
+          </div>
         </div>
-        <div>⛅️ 12°C</div>
       </main>
       <footer>
-        This project was coded by
-        <a href="https://github.com/LeboPhume" target="_blank"> Lebo Phume</a>
-        and is open sourced on
-        <a
-          href="https://github.com/LeboPhume/Boemo-ba-lehodimo"
-          target="_blank"
-        >
-          Github
-        </a>
-        and hosted on
-        <a href="https://boemo-ba-lehodimo-app.netlify.app" target="_blank">
-          Netlify</a
-        >
+        <p>
+          This project was coded by
+          <a href="https://github.com/LeboPhume" target="_blank"> Lebo Phume</a>
+          and is open sourced on
+          <a
+            href="https://github.com/LeboPhume/Boemo-ba-lehodimo"
+            target="_blank"
+          >
+            Github
+          </a>
+          and hosted on
+          <a href="https://boemo-ba-lehodimo-app.netlify.app" target="_blank">
+            Netlify</a
+          >
+        </p>
       </footer>
     </div>
   </body>
+  <script src="src/index.js"></script>
 </html>

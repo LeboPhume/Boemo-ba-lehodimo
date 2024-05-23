@@ -1,5 +1,5 @@
 body {
-  background-color: #f9f7fe;
+  background-color: linear-gradient(-225deg, #7de2fc 0%, #b9b6e5 100%);
   font-family: .roboto-thin {
     font-family: "Roboto", sans-serif;
     font-weight: 100;
@@ -7,7 +7,7 @@ body {
   }
 }
 .weather-app {
-  background: white;
+  background: linear-gradient(-225deg, #7de2fc 0%, #b9b6e5 100%);
   border-radius: 10px;
   max-width: 600px;
   margin: 60px auto;

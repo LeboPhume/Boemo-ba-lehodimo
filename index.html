@@ -16,37 +16,34 @@
   <body>
     <div class="weather-app">
       <header>
-  <form id="search-form">
-          <input type="search" placeholder="Enter a city.." required class="search-input" id="search-input"/>
-          <input type="submit" value="Search"/>
+  <form class="search-form">
+          <input type="search" placeholder="Enter a city..." required class="search-form-input"/>
+          <input type="submit" value="Search" class="search-form-button"/>
         </form>
       </header>
       <main>
-            <h1> Paris</h1>
-            </main>
-            </body>
-            <div>
-            <p>
+        <div class="weather-app-data">
+          <div>
+            <h1 class="weather-app-city"> Paris</h1>
+            <p class="weather-app-details">
               Friday 0:14, clear sky
             </br>
-Humidity: 85%, Wind: 2.06km/h
+           Humidity: <strong> 85% </strong> , Wind: <strong>2.06km/h</strong>
             </p>
-          </div>
-          <div class="current-temperature">
-            <span class="current-temperature-icon">☀️</span
-            ><span class="current-temperature-value">24</span
-            ><span class="current-temperature-unit">°C</span>
+        </div> 
+        <div class="weather-app-container">
+          <div class="weather-app-icon"> ☀️</div>
+          <div class="weather-app-temperature">24</div>
+          <div class="weather-app-unit"> °C  </div>
           </div>
       </main>
       <footer>
-        <p>
           This project was coded by
           <a href="https://github.com/LeboPhume" target="_blank"> Lebo Phume</a>
           and is open sourced on
           <a href="https://github.com/LeboPhume/Boemo-ba-lehodimo" target="_blank"> Github </a>
           and hosted on
           <a href="https://boemo-ba-lehodimo-app.netlify.app" target="_blank"> Netlify</a>
-        </p>
       </footer>
     </div>
   </body>

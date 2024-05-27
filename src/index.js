@@ -1,62 +1,32 @@
-function handleSearchSubmit(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-form-input");
-  console.log(searchInput.value);
-  let city = searchInput.value;
-  searchCity(searchInput.value);
+function refreshWeather(response) {
+  let temperatureElement = document.querySelector("#temperature");
+  let temperature = response.data.temperature.current;
+  let cityElement = document.querySelector("#city");
+  console.log(response.data.temperature.current);
+
+  cityElement.innerHTML = response.data.city;
+  temperatureElement.innerHTML = Math.round(temperature);
 }
-let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-function formatDate(date) {
-  let minutes = date.getMinutes();
-  let hours = date.getHours();
-  let day = date.getDay();
+function searchCity(city) {
+  let apiKey = "c55ftfcaa714e3e000aee3a34e77cbo8";
+  let apiUrl =
+    "https://api.shecodes.io/weather/v1/current?query={query}&key={key}";
+  axios.get(apiUrl).then(refreshWeather);
+}
 
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
+document.addEventListener("DOMContentLoaded", (event) => {
+  function handleSearchSubmit(event) {
+    event.preventDefault();
+    let searchInput = document.querySelector("#search-form-input");
+    searchCity(searchInput.value);
   }
-
-  if (hours < 10) {
-    hours = `0${hours}`;
+  let searchFormElement = document.querySelector("#search-form");
+  if (searchFormElement) {
+    searchFormElement.addEventListener("submit", handleSearchSubmit);
+  } else {
+    console.error('Element with id "search-form" not found.');
   }
+});
 
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  let formattedDay = days[day];
-  return `${formattedDay} ${hours}:${minutes}`;
-}
-
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
-
-let currentDateELement = document.querySelector("#current-date");
-let currentDate = new Date();
-
-currentDateELement.innerHTML = formatDate(currentDate);
-
-function displayTemperature(response) {
-  let temperature = Math.round(response.data.temperature.current);
-  let temperatureValue = document.querySelector(".current-temperature-value");
-  let city = document.querySelector(".current-city");
-  city.innerHTML = response.data.city;
-  temperatureValue.innerHTML = temperature;
-}
-
-function search(event) {
-  event.preventDefault();
-  let searchInputElement = document.querySelector("#search-input");
-  let city = searchInputElement.value;
-  let apiKey = "03351b3tc2f7fc9oa83ff4ea58bed167";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
-  axios.get(apiUrl).then(displayTemperature);
-}
+searchCity("Cape Town");

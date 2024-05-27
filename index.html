@@ -16,38 +16,50 @@
   <body>
     <div class="weather-app">
       <header>
-  <form class="search-form" id="search-form">
-          <input type="search" placeholder="Enter a city.." required id ="search-form-input" class="search-form-input"/>
-          <input type="submit" value="Search" class="search-form-button"/>
+        <form class="search-form" id="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city..."
+            required
+            id="search-form-input"
+            class="search-form-input"
+          />
+          <input type="submit" value="Search" class="search-form-button" />
         </form>
       </header>
-      <div class="weather-app-data">
+      <main>
+        <div class="weather-app-data">
           <div>
             <h1 class="weather-app-city" id="city"></h1>
-            <p class="weather-app-info">
-              <span id="date"></span>, <span id="weather-description"></span
-              ><br />
-              Humidity: <strong id="humidity"></strong>, Wind:
-              <strong id="wind-speed"></strong>
+            <p class="weather-app-details">
+              <span id="date"></span>, <span id="description"></span>
+              <br />
+              Humidity: <strong id="humidity"></strong> Wind:
+              <strong id="speed"></strong>
             </p>
           </div>
-          <div class="weather-app-temperature-container">
-            <div id="icon">
-              <img src="" class="weather-app-icon" id="weather-app-icon" />
-            </div>
-            <div class="weather-app-temperature" id="temperature"></div>
-            <div class="weather-app-unit" id="weather-app-unit">°C</div>
+          <div class="weather-app-temp-container">
+            <div id="icon">☁</div>
+            <div class="weather-app-temp" id="temperature"></div>
+            <div class="weather-app-unit">°C</div>
           </div>
         </div>
         <div class="weather-forecast" id="forecast"></div>
       </main>
       <footer>
-          This project was coded by
-          <a href="https://github.com/LeboPhume" target="_blank"> Lebo Phume</a>
-          and is open sourced on
-          <a href="https://github.com/LeboPhume/Boemo-ba-lehodimo" target="_blank"> Github </a>
-          and hosted on
-          <a href="https://boemo-ba-lehodimo-app.netlify.app" target="_blank"> Netlify</a>
+        This project was coded by
+        <a href="https://github.com/LeboPhume" target="_blank"> Lebo Phume</a>
+        and is open sourced on
+        <a
+          href="https://github.com/LeboPhume/Boemo-ba-lehodimo"
+          target="_blank"
+        >
+          Github
+        </a>
+        and hosted on
+        <a href="https://boemo-ba-lehodimo-app.netlify.app" target="_blank">
+          Netlify</a
+        >
       </footer>
     </div>
   </body>

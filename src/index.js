@@ -47,9 +47,9 @@ function searchCity(city) {
   axios.get(apiUrl).then(refreshWeather);
 }
 
-function handleSearch(event) {
+function handleSearchSubmit(event) {
   event.preventDefault();
-  let searchedCityName = document.querySelector("#search-form-input");
+  let searchInput = document.querySelector("#search-form-input");
 
   searchCity(searchInput.value);
 }
@@ -65,7 +65,7 @@ function getForecast(city) {
   let apikey = "c55ftfcaa714e3e000aee3a34e77cbo8";
   let apiUrl =
     "https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&units=metric";
-  axios.get(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(displayForcast);
 }
 
 function displayForcast(response) {
@@ -98,6 +98,6 @@ function displayForcast(response) {
 }
 
 let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", handleSearch);
+searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Pretoria");

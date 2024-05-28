@@ -1,29 +1,28 @@
 function refreshWeather(response) {
-  let elementTemperature = document.querySelector("#temperature");
-  let currentTemperature = Math.round(response.data.temperature.current);
-  let cityName = document.querySelector("#city");
-  let elementDiscription = document.querySelector("#weather-description");
-  let currentWeatherCondition = response.data.condition.description;
-  let elementHumidity = document.querySelector("#humidity");
-  let currentHumidity = `${response.data.temperature.humidity}%`;
-  let elementWind = document.querySelector("#wind-speed");
-  let currentWindSpeed = `${response.data.wind.speed}km/h`;
-  let timeElement = document.querySelector("#date");
+  let temperatureElement = document.querySelector("#temperature");
+  let temperature = response.data.temperature.current;
+  let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windSpeedElement = document.querySelector("#wind-speed");
+  let timeElement = document.querySelector("#time");
   let date = new Date(response.data.time * 1000);
-  let icon = document.querySelector("#icon");
-  let iconImage = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" id="weather-app-icon" />`;
+  let iconElement = document.querySelector("#icon");
 
-  cityName.innerHTML = response.data.city;
-  elementTemperature.innerHTML = currentTemperature;
-  elementDiscription.innerHTML = currentWeatherCondition;
-  elementHumidity.innerHTML = currentHumidity;
-  elementWind.innerHTML = currentWindSpeed;
+  cityElement.innerHTML = response.data.city;
   timeElement.innerHTML = formatDate(date);
-  icon.innerHTML = iconImage;
+  descriptionElement.innerHTML = response.data.condition.description;
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+  windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+  temperatureElement.innerHTML = Math.round(temperature);
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
+
   getForecast(response.data.city);
 }
 
 function formatDate(date) {
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
   let days = [
     "Sunday",
     "Monday",
@@ -31,14 +30,14 @@ function formatDate(date) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "saturday",
+    "Saturday",
   ];
   let day = days[date.getDay()];
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
+
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
+
   return `${day} ${hours}:${minutes}`;
 }
 
@@ -51,12 +50,14 @@ function searchCity(city) {
 function handleSearch(event) {
   event.preventDefault();
   let searchedCityName = document.querySelector("#search-form-input");
-  searchCity(searchedCityName.value);
+
+  searchCity(searchInput.value);
 }
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
   return days[date.getDay()];
 }
 
@@ -67,14 +68,13 @@ function getForecast(city) {
   axios.get(apiUrl).then(displayForecast);
 }
 
-function displayWeatherForcast(response) {
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+function displayForcast(response) {
   let weatherForecastHTML = "";
 
   response.data.daily.forEach(function (day, index) {
     if (index < 5) {
-      weatherForecastHTML =
-        weatherForecastHTML +
+      forecastHTML =
+        forecastHTML +
         `
     <div class= "weather-forecast-day">
     <div class="weather-forecast-date">${formatDay(day.time)}</div>
@@ -93,10 +93,11 @@ function displayWeatherForcast(response) {
     }
   });
 
-  let weatherForecastElement = document.querySelector("#weather-forecast");
-  weatherForecastElement.innerHTML = weatherForecastHTML;
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHTML;
 }
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearch);
+
 searchCity("Pretoria");
